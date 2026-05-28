@@ -265,4 +265,4 @@ A pasta `dados/` contém as evidências reais da simulação executada no Wokwi 
 
 ---
 
-*Projeto desenvolvido como trabalho acadêmico na disciplina de Sistemas Embarcados / IoT.*
+*Projeto desenvolvido como trabalho acadêmico na disciplina de Objetos Inteligentes Conectados / IoT.*
