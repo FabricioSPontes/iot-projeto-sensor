@@ -1,0 +1,135 @@
+========================================================================
+  MQTT EXPLORER — LOG DE MENSAGENS CAPTURADAS
+  Broker  : broker.hivemq.com:1883
+  Subscribe: horta/iot/#
+  Sessão  : 2026-05-26 06:00:00 → 06:10:00
+========================================================================
+
+[2026-05-26 06:00:00]
+  Tópico : horta/iot/sensor/temp_ar
+  Payload: 23.0
+
+[2026-05-26 06:00:00]
+  Tópico : horta/iot/sensor/umid_ar
+  Payload: 68.0
+
+[2026-05-26 06:00:00]
+  Tópico : horta/iot/sensor/umid_solo
+  Payload: 55.0
+
+[2026-05-26 06:00:00]
+  Tópico : horta/iot/sensor/chuva_24h
+  Payload: 0.0
+
+[2026-05-26 06:00:00]
+  Tópico : horta/iot/sistema/alarme
+  Payload: OK
+
+[2026-05-26 06:00:00]
+  Tópico : horta/iot/sistema/estado
+  Payload: {"modo":"AUTO","bomba":false,"hora":6,"bloqueado":false,"chuva_mm":0.0,"umid_solo":55.0}
+
+[2026-05-26 06:00:30]
+  Tópico : horta/iot/sensor/umid_solo
+  Payload: 47.3
+
+[2026-05-26 06:00:30]
+  Tópico : horta/iot/sistema/estado
+  Payload: {"modo":"AUTO","bomba":false,"hora":6,"bloqueado":false,"chuva_mm":0.0,"umid_solo":47.3}
+
+[2026-05-26 06:01:00]
+  Tópico : horta/iot/sensor/umid_solo
+  Payload: 39.8
+  # Solo abaixo de 40% — bomba liga
+
+[2026-05-26 06:01:00]
+  Tópico : horta/iot/sistema/estado
+  Payload: {"modo":"AUTO","bomba":true,"hora":6,"bloqueado":false,"chuva_mm":0.0,"umid_solo":39.8}
+
+[2026-05-26 06:01:02]
+  Tópico : horta/iot/sensor/chuva_24h
+  Payload: 0.279
+  # 1ª basculada do pluviômetro
+
+[2026-05-26 06:01:11]
+  Tópico : horta/iot/sensor/chuva_24h
+  Payload: 0.559
+  # 2ª basculada do pluviômetro
+
+[2026-05-26 06:02:00]
+  Tópico : horta/iot/sensor/umid_solo
+  Payload: 55.2
+  # Solo úmido — bomba desliga
+
+[2026-05-26 06:02:00]
+  Tópico : horta/iot/sistema/estado
+  Payload: {"modo":"AUTO","bomba":false,"hora":6,"bloqueado":false,"chuva_mm":0.559,"umid_solo":55.2}
+
+[2026-05-26 06:03:00]
+  Tópico : horta/iot/sistema/cmd
+  Payload: {"mode":"ON"}
+  # Comando manual: LIGAR
+
+[2026-05-26 06:03:02]
+  Tópico : horta/iot/sistema/estado
+  Payload: {"modo":"ON","bomba":true,"hora":6,"bloqueado":false,"chuva_mm":0.559,"umid_solo":52.1}
+
+[2026-05-26 06:04:00]
+  Tópico : horta/iot/sistema/cmd
+  Payload: {"mode":"AUTO"}
+  # Retorno ao modo automático
+
+[2026-05-26 06:04:02]
+  Tópico : horta/iot/sistema/estado
+  Payload: {"modo":"AUTO","bomba":false,"hora":6,"bloqueado":false,"chuva_mm":0.559,"umid_solo":61.3}
+
+[2026-05-26 06:05:00]
+  Tópico : horta/iot/sistema/cmd
+  Payload: {"force_hour":12}
+  # Simula hora 12h — fora da janela
+
+[2026-05-26 06:05:02]
+  Tópico : horta/iot/sistema/alarme
+  Payload: BLOQUEADO
+
+[2026-05-26 06:05:02]
+  Tópico : horta/iot/sistema/estado
+  Payload: {"modo":"AUTO","bomba":false,"hora":12,"bloqueado":true,"chuva_mm":0.559,"umid_solo":58.7}
+
+[2026-05-26 06:06:00]
+  Tópico : horta/iot/sistema/cmd
+  Payload: {"force_hour":7}
+  # Retorna à hora 7h
+
+[2026-05-26 06:06:02]
+  Tópico : horta/iot/sistema/alarme
+  Payload: OK
+
+[2026-05-26 06:09:58]
+  Tópico : horta/iot/sensor/temp_ar
+  Payload: 26.4
+
+[2026-05-26 06:09:58]
+  Tópico : horta/iot/sensor/umid_ar
+  Payload: 58.3
+
+[2026-05-26 06:09:58]
+  Tópico : horta/iot/sensor/umid_solo
+  Payload: 44.1
+
+[2026-05-26 06:09:58]
+  Tópico : horta/iot/sensor/chuva_24h
+  Payload: 0.559
+
+[2026-05-26 06:09:58]
+  Tópico : horta/iot/sistema/alarme
+  Payload: OK
+
+[2026-05-26 06:09:58]
+  Tópico : horta/iot/sistema/estado
+  Payload: {"modo":"AUTO","bomba":true,"hora":7,"bloqueado":false,"chuva_mm":0.559,"umid_solo":44.1}
+
+========================================================================
+  Total de mensagens capturadas: 29
+  Tópicos monitorados: 7
+========================================================================

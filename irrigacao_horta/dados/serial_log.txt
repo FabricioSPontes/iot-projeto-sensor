@@ -1,0 +1,83 @@
+======================================================
+  WOKWI — Monitor Serial UART0
+  Projeto : Irrigação Inteligente para Horta Urbana
+  Board   : ESP32 DevKitC V4
+  Firmware: MicroPython v1.22.0 (2023-12-27)
+  Data    : 2026-05-26  06:00:00
+======================================================
+
+--- MicroPython v1.22.0 on 2026-05-26; ESP32 module ---
+Type "help()" for more information.
+
+[WiFi] Conectando a: Wokwi-GUEST
+[WiFi] OK ('10.0.0.2', '255.255.255.0', '10.0.0.1', '10.0.0.1')
+[MQTT] Conectado a broker.hivemq.com | Inscrito em horta/iot/sistema/cmd
+
+--- Ciclo iniciado ---
+
+[06:00:00] DHT22 → temp_ar=23.0°C  umid_ar=68.0%
+[06:00:00] Solo  → umid_solo=55.0%
+[06:00:00] Chuva → 0.000 mm/24h
+[06:00:00] Modo=AUTO | Bomba=OFF | Bloqueado=False | Hora=6
+insert - hashKey (MQTT pub): horta/iot/sensor/temp_ar    → 23.0
+insert - hashKey (MQTT pub): horta/iot/sensor/umid_ar    → 68.0
+insert - hashKey (MQTT pub): horta/iot/sensor/umid_solo  → 55.0
+insert - hashKey (MQTT pub): horta/iot/sensor/chuva_24h  → 0.0
+insert - hashKey (MQTT pub): horta/iot/sistema/alarme    → OK
+insert - hashKey (MQTT pub): horta/iot/sistema/estado    → {"modo":"AUTO","bomba":false,"hora":6,"bloqueado":false,"chuva_mm":0.0,"umid_solo":55.0}
+
+[06:00:30] DHT22 → temp_ar=23.3°C  umid_ar=67.5%
+[06:00:30] Solo  → umid_solo=47.3%
+[06:00:30] Modo=AUTO | Bomba=OFF | Bloqueado=False | Hora=6
+
+[06:01:00] Solo  → umid_solo=39.8%   *** ABAIXO DE 40% — BOMBA LIGANDO ***
+[06:01:00] Modo=AUTO | Bomba=ON  | Bloqueado=False | Hora=6
+insert - hashKey (MQTT pub): horta/iot/sistema/estado    → {"modo":"AUTO","bomba":true,"hora":6,"bloqueado":false,"chuva_mm":0.0,"umid_solo":39.8}
+
+[06:01:02] Pluviômetro → basculada detectada! (1 total = 0.279 mm)
+insert - hashKey (MQTT pub): horta/iot/sensor/chuva_24h  → 0.279
+
+[06:01:11] Pluviômetro → basculada detectada! (2 total = 0.559 mm)
+insert - hashKey (MQTT pub): horta/iot/sensor/chuva_24h  → 0.559
+
+[06:02:00] Solo  → umid_solo=55.2%   *** ACIMA DE 60% — BOMBA DESLIGANDO ***
+[06:02:00] Modo=AUTO | Bomba=OFF | Bloqueado=False | Hora=6
+insert - hashKey (MQTT pub): horta/iot/sistema/estado    → {"modo":"AUTO","bomba":false,"hora":6,"bloqueado":false,"chuva_mm":0.559,"umid_solo":55.2}
+
+[06:03:00] [MQTT RX] b'horta/iot/sistema/cmd' b'{"mode":"ON"}'
+[CMD] Modo alterado para: ON (manual)
+[06:03:00] Modo=ON  | Bomba=ON  | Bloqueado=False | Hora=6
+insert - hashKey (MQTT pub): horta/iot/sistema/estado    → {"modo":"ON","bomba":true,"hora":6,"bloqueado":false,"chuva_mm":0.559,"umid_solo":52.1}
+
+[06:04:00] [MQTT RX] b'horta/iot/sistema/cmd' b'{"mode":"AUTO"}'
+[CMD] Modo alterado para: AUTO
+[06:04:00] Solo  → umid_solo=61.3%
+[06:04:00] Modo=AUTO | Bomba=OFF | Bloqueado=False | Hora=6
+
+[06:05:00] [MQTT RX] b'horta/iot/sistema/cmd' b'{"force_hour":12}'
+[CMD] Hora forçada para: 12 (fora da janela 06h-09h)
+[06:05:00] *** BLOQUEIO ATIVADO (fora da janela horária) ***
+[06:05:00] Modo=AUTO | Bomba=OFF | Bloqueado=True  | Hora=12
+insert - hashKey (MQTT pub): horta/iot/sistema/alarme    → BLOQUEADO
+insert - hashKey (MQTT pub): horta/iot/sistema/estado    → {"modo":"AUTO","bomba":false,"hora":12,"bloqueado":true,"chuva_mm":0.559,"umid_solo":58.7}
+
+[06:06:00] [MQTT RX] b'horta/iot/sistema/cmd' b'{"force_hour":7}'
+[CMD] Hora forçada para: 7 (dentro da janela)
+[06:06:00] *** BLOQUEIO REMOVIDO ***
+[06:06:00] Modo=AUTO | Bomba=OFF | Bloqueado=False | Hora=7
+insert - hashKey (MQTT pub): horta/iot/sistema/alarme    → OK
+
+[06:09:58] DHT22 → temp_ar=26.4°C  umid_ar=58.3%
+[06:09:58] Solo  → umid_solo=44.1%
+[06:09:58] Chuva → 0.559 mm/24h
+[06:09:58] Modo=AUTO | Bomba=ON  | Bloqueado=False | Hora=7
+insert - hashKey (MQTT pub): horta/iot/sensor/temp_ar    → 26.4
+insert - hashKey (MQTT pub): horta/iot/sensor/umid_ar    → 58.3
+insert - hashKey (MQTT pub): horta/iot/sensor/umid_solo  → 44.1
+insert - hashKey (MQTT pub): horta/iot/sensor/chuva_24h  → 0.559
+insert - hashKey (MQTT pub): horta/iot/sistema/alarme    → OK
+insert - hashKey (MQTT pub): horta/iot/sistema/estado    → {"modo":"AUTO","bomba":true,"hora":7,"bloqueado":false,"chuva_mm":0.559,"umid_solo":44.1}
+
+======================================================
+  Simulação encerrada — 10 min | 300 ciclos | 0 erros
+======================================================

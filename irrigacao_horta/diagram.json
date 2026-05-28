@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "author": "Projeto Horta Urbana — Irrigação Inteligente com MQTT",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 170,
+      "left": 10,
+      "attrs": {
+        "temperature": "24",
+        "humidity": "65",
+        "label": "DHT22 — Temp/Umid Ar"
+      }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "soil",
+      "top": 170,
+      "left": 210,
+      "attrs": { "label": "Sensor Solo (ADC GPIO34)" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "rain",
+      "top": 260,
+      "left": 110,
+      "attrs": {
+        "bounce": "0",
+        "label": "Pluviômetro GPIO4"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_bomba",
+      "top": 170,
+      "left": 330,
+      "attrs": {
+        "color": "green",
+        "label": "Bomba GPIO2"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_alarme",
+      "top": 215,
+      "left": 330,
+      "attrs": {
+        "color": "red",
+        "label": "Alarme GPIO5"
+      }
+    },
+    {
+      "type": "wokwi-serial-monitor",
+      "id": "uart",
+      "top": -45,
+      "left": 350,
+      "attrs": { "label": "Monitor Serial UART0" }
+    },
+    {
+      "type": "wokwi-logic-analyzer",
+      "id": "la1",
+      "top": -50,
+      "left": 370,
+      "attrs": { "label": "Analisador Lógico" }
+    }
+  ],
+  "connections": [
+    ["dht1:VCC",  "esp:3V3",  "red",    ["v0"]],
+    ["dht1:GND",  "esp:GND",  "black",  ["v0"]],
+    ["dht1:SDA",  "esp:15",   "green",  ["v0"]],
+    ["soil:GND",  "esp:GND",  "black",  ["v0"]],
+    ["soil:VCC",  "esp:3V3",  "red",    ["v0"]],
+    ["soil:SIG",  "esp:34",   "orange", ["v0"]],
+    ["rain:1.l",  "esp:4",    "blue",   ["v0"]],
+    ["rain:2.l",  "esp:GND",  "black",  ["v0"]],
+    ["led_bomba:A",  "esp:2", "green",  ["v0"]],
+    ["led_bomba:C",  "esp:GND","black", ["v0"]],
+    ["led_alarme:A", "esp:5", "red",    ["v0"]],
+    ["led_alarme:C", "esp:GND","black", ["v0"]],
+    ["esp:TX", "$serialMonitor:RX", "", []],
+    ["esp:RX", "$serialMonitor:TX", "", []],
+    ["esp:4",  "la1:D0", "purple", ["v0"]],
+    ["esp:2",  "la1:D1", "purple", ["v0"]],
+    ["esp:TX", "la1:D2", "purple", ["v0"]]
+  ],
+  "dependencies": {}
+}
