@@ -4,7 +4,6 @@
 Sistema de irrigação automatizado utilizando Arduino, sensores e comunicação MQTT.
 
 ## Tecnologias utilizadas
-- Arduino Uno
 - ESP32 / Wokwi
 - MQTT
 - MicroPython
